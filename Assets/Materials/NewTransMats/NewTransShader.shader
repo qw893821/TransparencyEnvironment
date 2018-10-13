@@ -2,6 +2,7 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
+		_NoiseTex("NoiseTexture",2D) = "black"{}
 		_Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
 		_TestPosition("TestPosition",Vector)=(0,0,0,0)
@@ -19,6 +20,7 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+		sampler2D _NoiseTex;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -38,22 +40,30 @@
 		UNITY_INSTANCING_BUFFER_END(Props)
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
+			fixed4 c;
 			float dis;
 			dis = distance(_TestPosition,IN.worldPos);
 			// Albedo comes from a texture tinted by color
-			/*if(dis<_TransRange){*/
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+			if (dis > _TransRange) {
+				c= tex2D(_MainTex, IN.uv_MainTex) * _Color;
+			}
+			else {
+				c = tex2D(_NoiseTex, IN.uv_MainTex)*_Color;
+			}
 			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
-			if (dis < _TransRange) {
+			//default alpha value
+			o.Alpha = c.a;
+			//first step transparent mat
+			/*if (dis < _TransRange) {
 				o.Alpha = 0;
 			}
 			else
 			{
 				o.Alpha = c.a;
-			}
+			}*/
 		}
 		ENDCG
 	}

@@ -217,14 +217,14 @@ MeshRenderer:
   m_GameObject: {fileID: 941259036}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 62c954aaf97aa7749b8cb476747c6d2f, type: 2}
+  - {fileID: 2100000, guid: 13230ecf552bf484c9b1470712ce6a05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
