@@ -14,7 +14,7 @@
 		
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows alpha:blend
+		#pragma surface surf Standard fullforwardshadows alpha:blend 
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
@@ -25,6 +25,7 @@
 		struct Input {
 			float2 uv_MainTex;
 			float3 worldPos;
+			float2 uv_texcoord;
 		};
 
 		half _Glossiness;
@@ -50,6 +51,7 @@
 			else {
 				c = tex2D(_NoiseTex, IN.uv_MainTex)*_Color;
 			}
+			/*c = tex2D(_MainTex, IN.uv_MainTex) * _Color;*/
 			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
@@ -57,13 +59,30 @@
 			//default alpha value
 			o.Alpha = c.a;
 			//first step transparent mat
-			/*if (dis < _TransRange) {
-				o.Alpha = 0;
+			/*if (dis < _TransRange&&o.Alpha>0) {
+				float alphaCurrent;
+				alphaCurrent = o.Alpha;
+				alphaCurrent -= 0.1f;
+				o.Alpha = alphaCurrent;
 			}
-			else
+			else if(o.Alpha<1)
 			{
-				o.Alpha = c.a;
+				float alphaCurrent;
+				alphaCurrent = o.Alpha;
+				alphaCurrent += 0.1f;
+				o.Alpha = alphaCurrent;
 			}*/
+			//if (dis < _TransRange) {
+			//	
+			//	o.Alpha = 0;
+			//}
+			//else /*if (o.Alpha < 1)*/
+			//{
+			//	/*float alphaCurrent;
+			//	alphaCurrent = o.Alpha;
+			//	alphaCurrent += 0.1f;*/
+			//	o.Alpha = c.a;
+			//}
 		}
 		ENDCG
 	}

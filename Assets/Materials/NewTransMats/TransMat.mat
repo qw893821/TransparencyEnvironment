@@ -77,7 +77,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.46
+    - _Metallic: 0.171
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -85,13 +85,13 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _TransRange: 1
+    - _TransRange: 1.512
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.990566, g: 0.2476415, b: 0.2476415, a: 1}
+    - _Color: {r: 0.735849, g: 0.03818085, b: 0.03818085, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Pos: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _TestPosition: {r: 0, g: 4, b: -2.98, a: 0}
+    - _TestPosition: {r: 0, g: 4, b: -3, a: 0}
